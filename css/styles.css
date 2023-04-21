@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+
+}
+header {
+    background-color: #e10600 ;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+}
+header .logo{
+    align-self: center;
+    height: 50%;
+    width: 100%;
+}
