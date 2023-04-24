@@ -1,6 +1,7 @@
 body {
     margin: 0;
-
+    font-family: 'Formula1 Display Regular', Arial, sans-serif;
+    font-weight: 00;
 }
 header {
     background-color: #e10600 ;
@@ -26,7 +27,7 @@ header .logo{
 
 .card {
     width: 280px;
-    height: 250px;
+    height: auto;
     background-color: #fff;
     /* box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
     border-bottom-left-radius: 8px;
@@ -38,6 +39,7 @@ header .logo{
 .card .img-card{
     width: 100%;
     display: flex;
+    min-height: 100px;
     align-items: center;
     justify-content: center;
     border-bottom: 2px solid black;
@@ -46,4 +48,23 @@ header .logo{
 .img-card img {
     max-width: 150px;
     margin: 5px;
+}
+.text-content {
+    width: 100%;
+    height: auto;
+    padding-bottom: 5px;
+}
+.text-content h2 {
+    text-align: center;
+}
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #15151e;
+    height: 100px;
+    width: 100%;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
 }

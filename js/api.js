@@ -1,4 +1,4 @@
-let baseURL = "http://ergast.com/api/f1/drivers.json"
+let baseURL = "http://ergast.com/api/f1/2022/drivers/.json"
 
 var requestOptions = {
     method: 'GET',
