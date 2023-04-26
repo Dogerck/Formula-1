@@ -8,17 +8,35 @@ body {
     font-weight: 400;
     font-family: 'Bruno Ace SC', cursive;
 }
+
 header {
     background-color: #e10600 ;
     height: 70px;
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 5px;
 }
-header .logo{
+
+nav {
+    width: 90%;
+    display: flex;
+    height: 100%;
+}
+nav .logo{
     align-self: center;
     height: 50%;
+}
+.botoes-nav {
+    display: inline-block;
+
+}
+.botoes-nav ul {
+    display: flex;
+}
+.botoes-nav ul li{
+    margin-left: 50px;
 }
 
 .container {
@@ -27,13 +45,13 @@ header .logo{
     display: flex;
     justify-content: center;
     align-items: center;
-
     padding: 20px;
 }
 .container-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
+    margin-bottom: 20px;
 }
 
 .card {

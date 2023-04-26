@@ -12,10 +12,15 @@ let requestOptions = {
   fetch(baseURL, requestOptions)
     .then(response => response.json())
     .then(result => {
-      console.log(result);
-      nome.innerHTML = result.MRData.DriverTable.Drivers[8].givenName + " " + result.MRData.DriverTable.Drivers[8].familyName;
-      birth.innerHTML = "Date of Birth: " + result.MRData.DriverTable.Drivers[8].dateOfBirth;
-      nacio.innerHTML = "Nacionality: " + result.MRData.DriverTable.Drivers[8].nationality;
-      number.innerHTML = "Pilot Number: " + result.MRData.DriverTable.Drivers[8].permanentNumber;
+      result = result.MRData.DriverTable.Drivers;
+      
     })
     .catch(error => console.log('error', error));
+    
+    
+    
+    
+    // nome.innerHTML = result.MRData.DriverTable.Drivers[8].givenName + " " + result.MRData.DriverTable.Drivers[8].familyName;
+    // birth.innerHTML = "Date of Birth: " + result.MRData.DriverTable.Drivers[8].dateOfBirth;
+    // nacio.innerHTML = "Nacionality: " + result.MRData.DriverTable.Drivers[8].nationality;
+    // number.innerHTML = "Pilot Number: " + result.MRData.DriverTable.Drivers[8].permanentNumber;
