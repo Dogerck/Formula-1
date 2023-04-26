@@ -1,7 +1,9 @@
 body {
+    padding: 0;
     margin: 0;
-    font-family: 'Formula1 Display Regular', sans-serif;
-    font-weight: 500;
+    border: 0;
+    font-weight: 400;
+    font-family: 'Bruno Ace SC', cursive;
 }
 header {
     background-color: #e10600 ;
@@ -23,6 +25,12 @@ header .logo{
     justify-content: center;
     align-items: center;
     padding: 20px;
+
+}
+.container-cards {
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px;;
+    gap: 25px;
 }
 
 .card {
@@ -37,6 +45,11 @@ header .logo{
     border-color: black;
     cursor: pointer;
 }
+.card:hover {
+    border-color: #e10600;
+
+}
+
 .card .img-card{
     width: 100%;
     display: flex;
@@ -69,8 +82,7 @@ footer {
     height: 100px;
     width: 100%;
     color: #fff;
-    position: absolute;
-    bottom: 0;
+    margin-top: auto;
 }
 
 footer a {
