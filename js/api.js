@@ -9,13 +9,18 @@ let requestOptions = {
     redirect: 'follow'
   };
   
-  fetch(baseURL, requestOptions)
+  
+    fetch(baseURL, requestOptions)
     .then(response => response.json())
     .then(result => {
       result = result.MRData.DriverTable.Drivers;
       
     })
     .catch(error => console.log('error', error));
+  
+let a
+  a = document.querySelector("li")
+  console.log(a);
     
     
     

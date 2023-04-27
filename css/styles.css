@@ -11,47 +11,52 @@ body {
 
 header {
     background-color: #e10600 ;
-    height: 70px;
-    width: 100%;
+    color: #fff;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 5px;
 }
 
+header .logo{
+    height: 50%;
+}
+
 nav {
-    width: 90%;
+    width: 50%;
     display: flex;
     height: 100%;
 }
-nav .logo{
-    align-self: center;
-    height: 50%;
-}
+
 .botoes-nav {
-    display: inline-block;
+    display: flex;
 
 }
 .botoes-nav ul {
     display: flex;
-}
-.botoes-nav ul li{
-    margin-left: 50px;
-}
-
-.container {
-    width: 100%;
-    border: 1px solid red;
-    display: flex;
     justify-content: center;
     align-items: center;
+    list-style: none;
+}
+.botoes-nav ul li{
+    margin-left: 25px;
+}
+
+.container {    
+    border: 1px solid red;
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    flex-direction: column;
     padding: 20px;
 }
 .container-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, minmax(280px, 1fr));
     gap: 25px;
     margin-bottom: 20px;
+    align-self: center;
 }
 
 .card {
@@ -63,7 +68,7 @@ nav .logo{
     border-right: 2px solid;
     padding: 10px;
     border-color: black;
-    cursor: pointer;
+    cursor: pointer;    
 }
 .card:hover {
     border-color: #e10600;
