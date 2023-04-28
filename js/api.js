@@ -1,4 +1,4 @@
-let baseURL = "http://ergast.com/api/f1/2022/drivers/.json";
+let baseURL = "http://ergast.com/api/f1/2023/drivers/.json";
 const nome = document.getElementById("nome");
 const birth = document.getElementById("niver");
 const nacio = document.getElementById("nac");
@@ -14,13 +14,10 @@ let requestOptions = {
     .then(response => response.json())
     .then(result => {
       result = result.MRData.DriverTable.Drivers;
-      
+      console.log(result);
     })
     .catch(error => console.log('error', error));
   
-let a
-  a = document.querySelector("li")
-  console.log(a);
     
     
     
