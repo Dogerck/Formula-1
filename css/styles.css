@@ -46,7 +46,6 @@ nav {
 }
 
 .container {    
-    border: 1px solid red;
     display: flex;
     /* justify-content: center;
     align-items: center; */
@@ -97,6 +96,13 @@ nav {
 }
 .text-content h3 {
     text-align: center;
+}
+.text-content h3 a{
+    text-decoration: none;
+    color: inherit;
+}
+.text-content h3 a:hover {
+    font-size: 19px;
 }
 .text-content p {
     font-size: 14px;
