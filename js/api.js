@@ -12,7 +12,7 @@ async function getCards() {
 
       const cardContent = document.querySelector(".container-cards");
       data = data.MRData.DriverTable.Drivers;
-
+  
       data.map((drivers) => {
 
         const card = document.createElement("div");
@@ -23,7 +23,7 @@ async function getCards() {
         imgCard.classList.add("img-card");
     
         const img = document.createElement("img");
-        img.setAttribute("src", `img/lec.png`);
+        img.setAttribute("src", `assets/drivers/${drivers.driverId}.png`);
     
         const txtCtt = document.createElement("div");
         txtCtt.classList.add("text-content");
@@ -56,6 +56,9 @@ async function getCards() {
 
     })
     .catch(error => console.log('error', error))
+
+    let img = 
+    console.log(img);
 }
 getCards();
 
