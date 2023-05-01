@@ -1,68 +1,63 @@
-let baseURL = "http://ergast.com/api/f1/2023/drivers/.json";
-const cardContent = document.querySelector(".container-cards");
+let baseURL = "http://ergast.com/api/f1/2023/drivers.json";
 
-// const nome = document.getElementById("nome");
-// const birth = document.getElementById("niver");
-// const nacio = document.getElementById("nac");
-// const number = document.getElementById("num");
 let requestOptions = {
   method: 'GET',
   redirect: 'follow'
 };
 
 async function getCards() {
-  const response = await fetch(baseURL, requestOptions);
-  const data = await response.json()
-  
-    boys = data.MRData.DriverTable.Drivers;
-    console.log(boys);
-    console.log(response);
-  
-  
+  await fetch(baseURL, requestOptions)
+    .then(response => response.json())
+    .then(data => {
 
-    boys.map((drivers) => {
+      const cardContent = document.querySelector(".container-cards");
+      data = data.MRData.DriverTable.Drivers;
 
-    const card = document.createElement("div");
-    card.classList.add("card");
+      data.map((drivers) => {
 
-    const imgCard = document.createElement("div");
-    imgCard.classList.add("img-card");
-
-    const img = document.createElement("img");
-    img.setAttribute("src", `img/lec.png`);
-
-    const txtCtt = document.createElement("div");
-    txtCtt.classList.add("text-content");
-
-    const title = document.createElement("h3");
-    const linkwiki = document.createElement("a");
-    linkwiki.setAttribute("href", `${drivers.url}`);
-    linkwiki.setAttribute("target", `_blank`);
-    const niver = document.createElement("p");
-    const nac = document.createElement("p");
-    const num = document.createElement("p");
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.setAttribute("id", drivers.driverId);
     
+        const imgCard = document.createElement("div");
+        imgCard.classList.add("img-card");
+    
+        const img = document.createElement("img");
+        img.setAttribute("src", `img/lec.png`);
+    
+        const txtCtt = document.createElement("div");
+        txtCtt.classList.add("text-content");
+    
+        const title = document.createElement("h3");
+        const linkwiki = document.createElement("a");
+        linkwiki.setAttribute("href", drivers.url);
+        linkwiki.setAttribute("target", `_blank`);
+        const niver = document.createElement("p");
+        const nac = document.createElement("p");
+        const num = document.createElement("p");
+        
+    
+        cardContent.appendChild(card);
+        card.appendChild(imgCard);  
+        imgCard.appendChild(img);
+        card.appendChild(txtCtt);
+        txtCtt.appendChild(title);
+        title.appendChild(linkwiki);
+        txtCtt.appendChild(niver);
+        txtCtt.appendChild(nac);
+        txtCtt.appendChild(num);
+    
+    
+        linkwiki.innerText = drivers.givenName + " " + drivers.familyName;
+        niver.innerHTML = "<b>Birthday:</b> " + drivers.dateOfBirth;
+        nac.innerHTML = "<b>Nationality:</b> " + drivers.nationality;
+        num.innerHTML = "<b>Car Number:</b> " + drivers.permanentNumber;
+      })
 
-    cardContent.appendChild(card);
-    card.appendChild(imgCard);  
-    imgCard.appendChild(img);
-    card.appendChild(txtCtt);
-    txtCtt.appendChild(title);
-    title.appendChild(linkwiki);
-    txtCtt.appendChild(niver);
-    txtCtt.appendChild(nac);
-    txtCtt.appendChild(num);
-
-
-    linkwiki.innerText = drivers.givenName + " " + drivers.familyName;
-    niver.innerHTML = "<b>Birthday:</b> " + drivers.dateOfBirth;
-    nac.innerHTML = "<b>Nationality:</b> " + drivers.nationality;
-    num.innerHTML = "<b>Car Number:</b> " + drivers.permanentNumber
-
-
-  })
+    })
+    .catch(error => console.log('error', error))
 }
-getCards()
+getCards();
 
   
   
