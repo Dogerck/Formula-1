@@ -1,49 +1,4 @@
-body {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    font-weight: 500;
-    font-family: 'Formula1 Display Regular', sans-serif;
-}
-
-header {
-    background-color: #e10600 ;
-    color: #fff;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-}
-
-header .logo{
-    height: 50%;
-    cursor: pointer;
-}
-
-nav {
-    width: 50%;
-    display: flex;
-    height: 100%;
-}
-
-.botoes-nav {
-    display: flex;
-
-}
-.botoes-nav ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-}
-.botoes-nav ul li{
-    margin-left: 25px;
-    cursor: pointer;
-}
+@import url(common.css);
 
 .container {    
     display: flex;
@@ -138,21 +93,4 @@ nav {
     font-size: 14px;
     line-height: 10px;
 }
-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #15151e;
-    height: 100px;
-    width: 100%;
-    color: #fff;
-    margin-top: auto;
-}
 
-footer a {
-    color: #e10600;
-    text-decoration: none;
-}
-footer a:hover {
-    font-weight: 600;
-}

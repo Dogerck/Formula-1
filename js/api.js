@@ -2,7 +2,6 @@ let baseURL = "http://ergast.com/api/f1";
 
 const drivers2023 = baseURL + '/2023/drivers.json';
 const standings = baseURL + '/current/driverStandings.json';
-console.log(standings);
 let requestOptions = {
   method: 'GET',
   redirect: 'follow'
@@ -72,17 +71,43 @@ async function getCards() {
     })
     .catch(error => console.log('error', error))
 }
+
+async function getStandings() {
+  await fetch(standings, requestOptions)
+    .then(response => response.json())
+    .then(data => {
+
+      const table =  document.getElementById("bodyTable");
+      data = data.MRData.StandingsTable.StandingsLists[0].DriverStandings
+
+      data.map((standings) => {
+        console.log(standings);
+
+        const tr = document.createElement('tr');
+        const pos = document.createElement('td');
+        const dr = document.createElement('td');
+        const nat = document.createElement('td');
+        const car = document.createElement('td');
+        const pts = document.createElement('td');
+
+        table.appendChild(tr);
+        tr.appendChild(pos);
+        tr.appendChild(dr);
+        tr.appendChild(nat);
+        tr.appendChild(car);
+        tr.appendChild(pts);
+
+        pos.innerText = standings.position
+        dr.innerText = standings.Driver.familyName;
+        nat.innerText = standings.Driver.nationality;
+        car.innerText = standings.Constructors[0].name;
+        pts.innerText = standings.points;
+      })
+    })
+    .catch(error => console.log('error', error))
+    
+
+  }
+  
+getStandings()
 getCards();
-
-
-
-
-
-
-
-
-
-    // nome.innerHTML = result.MRData.DriverTable.Drivers[8].givenName + " " + result.MRData.DriverTable.Drivers[8].familyName;
-    // birth.innerHTML = "Date of Birth: " + result.MRData.DriverTable.Drivers[8].dateOfBirth;
-    // nacio.innerHTML = "Nacionality: " + result.MRData.DriverTable.Drivers[8].nationality;
-    // number.innerHTML = "Pilot Number: " + result.MRData.DriverTable.Drivers[8].permanentNumber;
