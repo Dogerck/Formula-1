@@ -32,12 +32,13 @@ async function getCards(param) {
         imgCard.classList.add("img-card");
 
         const img = document.createElement("img");
-        img.setAttribute("src", `assets/drivers/${drivers.driverId}.png`);
+        img.setAttribute("src", `./assets/drivers/${drivers.driverId}.png`);
         img.setAttribute("alt", drivers.givenName);
 
         const numPilot = document.createElement("img");
-        numPilot.setAttribute("src", `assets/pilot number/${drivers.driverId}.png`);
+        numPilot.setAttribute("src", `./assets/pilot-number/${drivers.driverId}.png`);
         numPilot.classList.add("pilot-number");
+        numPilot.setAttribute("alt", "Number: " + drivers.permanentNumber);
 
         const txtCtt = document.createElement("div");
         txtCtt.classList.add("text-content");
@@ -86,14 +87,22 @@ async function getStandings() {
       data.map((standings) => {
       
         const tr = document.createElement('tr');
+
         const pos = document.createElement('td');
+
         const dr = document.createElement('td');
+
         const nat = document.createElement('td');
+
         const divFlag = document.createElement('div');
-        divFlag.classList.add("country-flag")
+        divFlag.classList.add("country-flag");
+
         const flag = document.createElement('img');
-        flag.setAttribute("src", `assets/pilot nat/${standings.Driver.driverId}.png`);
+        flag.setAttribute("src", `./assets/pilot-nat/${standings.Driver.driverId}.png`);
+        flag.setAttribute("alt", standings.Driver.nationality);
+
         const car = document.createElement('td');
+
         const pts = document.createElement('td');
 
         table.appendChild(tr);
