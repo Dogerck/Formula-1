@@ -10,10 +10,10 @@
 .container-cards {
     display: grid;
     margin: 20px 0 ;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 330px));
+    gap: 50px;
     align-self: center;
-    width: 85%;
+    width: 70%;
 }
 
 /* @media screen and (max-width: 1366px) {
@@ -23,7 +23,7 @@
 }  */
 
 .card {
-    width: 300px;
+    width: 330px;
     height: fit-content;
     background-color: #fff;
     border-top-right-radius: 15px;
