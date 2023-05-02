@@ -24,7 +24,7 @@ main {
     background-color: #f4f4f4;
     }
     
-    tr:hover:nth-child(1n + 0) {
+    tr:hover:nth-child(1n + 1) {
     background-color: #c5c5c5;
     color: #fff;
     }

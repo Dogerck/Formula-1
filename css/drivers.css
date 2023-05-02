@@ -13,8 +13,14 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
     align-self: center;
-    width: 70%;
+    width: 85%;
 }
+
+/* @media screen and (max-width: 1366px) {
+    .container-cards {
+        width: 85%;
+    }
+}  */
 
 .card {
     width: 300px;
