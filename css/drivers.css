@@ -73,13 +73,14 @@
     font-family: 'Formula1 Display Bold', sans-serif;
     position: absolute;
     left: 0;
-    bottom: 20px;
+    bottom: 25px;
     font-size: 18px;
 }
 .img-card .secondName {
     
     position: absolute;
     left: 0;
+    bottom: 5px;
 }
 .img-card h3 a{
     text-decoration: none;

@@ -79,7 +79,7 @@ async function getStandings() {
 
       const table =  document.getElementById("bodyTable");
       data = data.MRData.StandingsTable.StandingsLists[0].DriverStandings
-
+      console.log(data);
       data.map((standings) => {
         console.log(standings);
 
@@ -87,6 +87,10 @@ async function getStandings() {
         const pos = document.createElement('td');
         const dr = document.createElement('td');
         const nat = document.createElement('td');
+        const divflag = document.createElement('div');
+        divflag.classList.add("country-flag")
+        const flag = document.createElement('img');
+        flag.setAttribute("src", `assets/pilot nat/${standings.Driver.driverId}.png`);
         const car = document.createElement('td');
         const pts = document.createElement('td');
 
@@ -94,12 +98,14 @@ async function getStandings() {
         tr.appendChild(pos);
         tr.appendChild(dr);
         tr.appendChild(nat);
+        nat.appendChild(divflag)
+        divflag.appendChild(flag);
         tr.appendChild(car);
         tr.appendChild(pts);
 
         pos.innerText = standings.position
         dr.innerText = standings.Driver.familyName;
-        nat.innerText = standings.Driver.nationality;
+      
         car.innerText = standings.Constructors[0].name;
         pts.innerText = standings.points;
       })

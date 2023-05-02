@@ -3,3 +3,39 @@
 main {
     padding: 20px;
 }
+    
+    table {
+    border-collapse: collapse;
+    margin: auto;
+    }
+    
+    th, td{
+    padding: 10px;
+    text-align: start;
+    width: 200px;
+    }
+    
+    th{
+    font-weight: bold;
+    }
+    
+    
+    tr:nth-child(even) {
+    background-color: #f4f4f4;
+    }
+    
+    tr:hover:nth-child(1n + 0) {
+    background-color: #c5c5c5;
+    color: #fff;
+    }
+
+    .country-flag {
+        border-radius: 5px;
+        border: 1px solid #949498;
+        height: 32px;
+        overflow: hidden;
+        width: 48px;
+    }
+    .country-flag img {
+        width: 100%;
+    }
