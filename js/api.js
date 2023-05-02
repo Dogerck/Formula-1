@@ -1,3 +1,4 @@
+
 let baseURL = "http://ergast.com/api/f1";
 
 const drivers2023 = baseURL + '/2023/drivers.json';
@@ -7,9 +8,10 @@ let requestOptions = {
   redirect: 'follow'
 };
 
-async function getCards() {
 
-  await fetch(drivers2023, requestOptions)
+async function getCards(param) {
+
+  await fetch(baseURL+param, requestOptions)
     .then(response => response.json())
     .then(data => {
 
@@ -18,8 +20,9 @@ async function getCards() {
 
       data.map((drivers) => {
 
-        let birthDate = drivers.dateOfBirth.split('-').reverse().join('/')
-        drivers.dateOfBirth = birthDate
+        // let birthDate = drivers.dateOfBirth.split('-').reverse().join('/')
+
+        let birthDate = new Date(drivers.dateOfBirth).toLocaleDateString('pt-BR');
 
         const card = document.createElement("div");
         card.classList.add("card");
@@ -64,7 +67,7 @@ async function getCards() {
 
         firstName.innerText = drivers.givenName;
         linkwiki.innerText = drivers.familyName;
-        birth.innerHTML = "<b>Birthday:</b> " + drivers.dateOfBirth;
+        birth.innerHTML = "<b>Birthday:</b> " + birthDate;
         nac.innerHTML = "<b>Nationality:</b> " + drivers.nationality;
       })
 
@@ -79,16 +82,15 @@ async function getStandings() {
 
       const table =  document.getElementById("bodyTable");
       data = data.MRData.StandingsTable.StandingsLists[0].DriverStandings
-      console.log(data);
+      
       data.map((standings) => {
-        console.log(standings);
-
+      
         const tr = document.createElement('tr');
         const pos = document.createElement('td');
         const dr = document.createElement('td');
         const nat = document.createElement('td');
-        const divflag = document.createElement('div');
-        divflag.classList.add("country-flag")
+        const divFlag = document.createElement('div');
+        divFlag.classList.add("country-flag")
         const flag = document.createElement('img');
         flag.setAttribute("src", `assets/pilot nat/${standings.Driver.driverId}.png`);
         const car = document.createElement('td');
@@ -98,8 +100,8 @@ async function getStandings() {
         tr.appendChild(pos);
         tr.appendChild(dr);
         tr.appendChild(nat);
-        nat.appendChild(divflag)
-        divflag.appendChild(flag);
+        nat.appendChild(divFlag)
+        divFlag.appendChild(flag);
         tr.appendChild(car);
         tr.appendChild(pts);
 
@@ -115,5 +117,5 @@ async function getStandings() {
 
   }
   
-getStandings()
-getCards();
+  getStandings()
+  getCards('/2023/drivers.json')
