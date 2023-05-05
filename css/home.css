@@ -13,8 +13,9 @@ main {
     padding: 10px;
     text-align: start;
     width: 200px;
+    cursor: pointer;
     }
-    
+
     th{
     font-weight: bold;
     }
