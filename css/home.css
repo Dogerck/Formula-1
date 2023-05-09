@@ -35,8 +35,9 @@ main {
     padding: 10px;
     text-align: start;
     width: 100px;
+    cursor: pointer;
     }
-    
+
     th{
     font-weight: bold;
     }

@@ -10,7 +10,7 @@
 .container-cards {
     display: grid;
     margin: 20px 0 ;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 330px));
+    grid-template-columns: repeat(auto-fit, minmax(329px, 330px));
     gap: 50px;
     align-self: center;
     width: 70%;
@@ -35,6 +35,8 @@
 }
 .card:hover {
     border-color: #e10600;
+    transform: translateY(-8px);
+    transition: transform 0.4s;
 
 }
 
