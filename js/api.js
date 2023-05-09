@@ -17,23 +17,32 @@ async function getRaces() {
     const races = data.MRData.RaceTable.Races;
     const nextRace = races.find(race => new Date(race.date) > new Date());
     const nextRaceName = nextRace.raceName;
-    console.log(nextRaceName);
+    console.log(nextRace);
+    const cirBg = document.querySelector(".circuitBg");
+    const imgCircuit = document.createElement("img");
+    imgCircuit.setAttribute("src", `./assets/circuits/${nextRace.Circuit.circuitId}.png`);
+    cirBg.appendChild(imgCircuit)
+
+
     const updateCountdown = (nextRace, startTime) => {
+      
       const now = new Date().getTime();
-  const timeRemaining = startTime - now;
+      const timeRemaining = startTime - now;
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+      const countdown = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-  const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-  const countdown = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-  // atualiza o elemento da página que exibe o tempo restante
-  document.getElementById('countdown').innerHTML = 'Countdown:'+ ' ' + countdown;
-  document.getElementById('nR').innerHTML = nextRaceName;
-  
+      // atualiza o elemento da página que exibe o tempo restante
+      document.getElementById('countdown').innerHTML = 'Countdown:'+ ' ' + countdown;
     }
+    document.getElementById('nR').innerHTML = nextRaceName;
+      document.getElementById('fp1').innerHTML = 'Practice 1:' + ' '+ nextRace.FirstPractice.time;
+      document.getElementById('fp2').innerHTML = 'Practice 2:' + ' '+ nextRace.SecondPractice.time;
+      document.getElementById('fp3').innerHTML = 'Practice 3:' + ' '+ nextRace.ThirdPractice.time;
+      document.getElementById('Q').innerHTML = 'Qualifying:' + ' '+ nextRace.Qualifying.time;
+      document.getElementById('R').innerHTML = 'Race:' + ' '+ nextRace.time;;
     setInterval(() => {
       const nextRace = races.find(race => new Date(race.date) > new Date());
       const startTime = new Date(`${nextRace.date} ${nextRace.time}`).getTime();
