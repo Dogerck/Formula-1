@@ -11,11 +11,12 @@ main {
 .nextRaceContent {
   width: 700px;
   border: 1px solid red;
-  margin: auto;
+  margin: 0 auto;
   height: auto;
 }
 .circuitBg {
-  width: 50%;
+  border-radius: 5px;
+  width: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
