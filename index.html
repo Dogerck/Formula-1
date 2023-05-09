@@ -28,20 +28,37 @@
         <h1>2023 Driver Standings</h1>
         <p>Check out this season's official F1 line-up. Full breakdown of drivers, points and current positions. Follow your favourite F1 drivers on and off the track.</p>
         
-        <table class="bordered striped centered">
-            <thead>
-                <tr>
-                    <th>Position</th>
-                    <th>Driver</th>
-                    <th>Nationality</th>
-                    <th>Team</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
-            <tbody id="bodyTable">
-                
-            </tbody>
-        </table>
+        <div class="mainContent">
+            <table class="bordered striped centered">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Driver</th>
+                        <th>Nationality</th>
+                        <th>Team</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyTable">
+                </tbody>
+            </table>
+
+            <div class="nextRaceContent">
+                <h3>Next Race:</h3>
+                <h2 id="nR">Imola</h2>
+                <div class="circuitBg">
+                    <img src="./assets/circuits/imola.png" alt="imola">
+                </div>
+                <p id="fp1">practice 1:</p>
+                <p id="fp2">practice 2:</p>
+                <p id="fp3">practice 3:</p>
+                <p id="Q">Qualifying:</p>
+                <p id="R">Race:</p>
+                <p id="countdown"></p> 
+            </div>
+        </div>
+
+        
     </main>
     <footer> <p>This project consumes the service of <a href="https://ergast.com/mrd/" target="_blank">Ergast API</a></p></footer>
     <script src="js/api.js"></script>

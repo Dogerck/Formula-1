@@ -3,10 +3,48 @@ let baseURL = "http://ergast.com/api/f1";
 
 const drivers2023 = baseURL + '/2023/drivers.json';
 const standings = baseURL + '/current/driverStandings.json';
+const allRaces = baseURL + '/current.json';
+
 let requestOptions = {
   method: 'GET',
   redirect: 'follow'
 };
+
+async function getRaces() {
+  await fetch(allRaces, requestOptions)
+  .then(response => response.json())
+  .then(data => {
+    const races = data.MRData.RaceTable.Races;
+    const nextRace = races.find(race => new Date(race.date) > new Date());
+    const nextRaceName = nextRace.raceName;
+    console.log(nextRaceName);
+    const updateCountdown = (nextRace, startTime) => {
+      const now = new Date().getTime();
+  const timeRemaining = startTime - now;
+
+  const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+  const countdown = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+  // atualiza o elemento da página que exibe o tempo restante
+  document.getElementById('countdown').innerHTML = 'Countdown:'+ ' ' + countdown;
+  document.getElementById('nR').innerHTML = nextRaceName;
+  
+    }
+    setInterval(() => {
+      const nextRace = races.find(race => new Date(race.date) > new Date());
+      const startTime = new Date(`${nextRace.date} ${nextRace.time}`).getTime();
+      updateCountdown(nextRace, startTime);
+    }, 1000);
+
+    const race = new Date(`${nextRace.date} ${nextRace.time}`);
+    const qualifying = new Date(`${nextRace.date} ${nextRace.ThirdPractice.time}`);
+    console.log(qualifying);
+  })
+}
 
 
 async function getCards(param) {
@@ -90,6 +128,10 @@ async function getStandings() {
 
         const pos = document.createElement('td');
 
+        // const ske = document.createElement('div');
+        // ske.classList.add("skeleton");
+        // ske.classList.add("skeleton-text");
+
         const dr = document.createElement('td');
 
         const nat = document.createElement('td');
@@ -107,6 +149,7 @@ async function getStandings() {
 
         table.appendChild(tr);
         tr.appendChild(pos);
+        // tr.appendChild(ske);
         tr.appendChild(dr);
         tr.appendChild(nat);
         nat.appendChild(divFlag)
@@ -119,6 +162,9 @@ async function getStandings() {
       
         car.innerText = standings.Constructors[0].name;
         pts.innerText = standings.points;
+
+        // t = document.querySelector(".skeleton");
+        
       })
     })
     .catch(error => console.log('error', error))
@@ -128,3 +174,4 @@ async function getStandings() {
   
   getStandings()
   getCards('/2023/drivers.json')
+  getRaces()
