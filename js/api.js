@@ -16,8 +16,9 @@ async function getRaces() {
   .then(data => {
     const races = data.MRData.RaceTable.Races;
     const nextRace = races.find(race => new Date(race.date) > new Date());
-    const nextRaceName = nextRace.raceName;
-    console.log(nextRace);
+    
+    new Date(nextRace.time)
+    console.log(nextRace.time);
     const cirBg = document.querySelector(".circuitBg");
     const imgCircuit = document.createElement("img");
     imgCircuit.setAttribute("src", `./assets/circuits/${nextRace.Circuit.circuitId}.png`);
@@ -37,12 +38,12 @@ async function getRaces() {
       // atualiza o elemento da página que exibe o tempo restante
       document.getElementById('countdown').innerHTML = 'Countdown:'+ ' ' + countdown;
     }
-    document.getElementById('nR').innerHTML = nextRaceName;
-      document.getElementById('fp1').innerHTML = 'Practice 1:' + ' '+ nextRace.FirstPractice.time;
-      document.getElementById('fp2').innerHTML = 'Practice 2:' + ' '+ nextRace.SecondPractice.time;
-      document.getElementById('fp3').innerHTML = 'Practice 3:' + ' '+ nextRace.ThirdPractice.time;
-      document.getElementById('Q').innerHTML = 'Qualifying:' + ' '+ nextRace.Qualifying.time;
-      document.getElementById('R').innerHTML = 'Race:' + ' '+ nextRace.time;;
+    document.getElementById('nR').innerHTML = nextRace.raceName;
+      document.getElementById('fp1').innerHTML = 'PRACTICE 1:' + ' '+ nextRace.FirstPractice.time;
+      document.getElementById('fp2').innerHTML = 'PACTICE 2:' + ' '+ nextRace.SecondPractice.time;
+      document.getElementById('fp3').innerHTML = 'PRACTICE 3:' + ' '+ nextRace.ThirdPractice.time;
+      document.getElementById('Q').innerHTML = 'QUALIFYING:' + ' '+ nextRace.Qualifying.time;
+      document.getElementById('R').innerHTML = 'RACE:' + ' '+ nextRace.time;;
     setInterval(() => {
       const nextRace = races.find(race => new Date(race.date) > new Date());
       const startTime = new Date(`${nextRace.date} ${nextRace.time}`).getTime();
@@ -50,7 +51,7 @@ async function getRaces() {
     }, 1000);
 
     const race = new Date(`${nextRace.date} ${nextRace.time}`);
-    const qualifying = new Date(`${nextRace.date} ${nextRace.ThirdPractice.time}`);
+    const qualifying = new Date(` ${nextRace.date} ${nextRace.Qualifying.time}`);
     console.log(qualifying);
   })
 }
