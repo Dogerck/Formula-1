@@ -14,9 +14,23 @@ async function getRaces() {
   await fetch(allRaces, requestOptions)
   .then(response => response.json())
   .then(data => {
-    const races = data.MRData.RaceTable.Races;
-    const nextRace = races.find(race => new Date(race.date) > new Date());
     
+    const races = data.MRData.RaceTable.Races;
+    console.log(races);
+    const circ = document.querySelector(".container-circuits");
+    
+    // races.map((circuits) => {
+      
+    //   const cardI = document.createElement("div");
+    //   cardI.classList.add("card");
+
+    //   circ.appendChild(cardI);
+    //   cardI.innerText = circuits.raceName;
+    // })
+
+
+
+    const nextRace = races.find(race => new Date(race.date) > new Date());
     new Date(nextRace.time)
     console.log(nextRace.time);
     const cirBg = document.querySelector(".circuitBg");
@@ -38,13 +52,15 @@ async function getRaces() {
       // atualiza o elemento da página que exibe o tempo restante
       document.getElementById('countdown').innerHTML = 'Countdown:'+ ' ' + countdown;
     }
-    document.getElementById('nR').innerHTML = nextRace.raceName;
+
+      document.getElementById('nR').innerHTML = nextRace.raceName;
       document.getElementById('fp1').innerHTML = 'PRACTICE 1:' + ' '+ nextRace.FirstPractice.time;
       document.getElementById('fp2').innerHTML = 'PACTICE 2:' + ' '+ nextRace.SecondPractice.time;
       document.getElementById('fp3').innerHTML = 'PRACTICE 3:' + ' '+ nextRace.ThirdPractice.time;
       document.getElementById('Q').innerHTML = 'QUALIFYING:' + ' '+ nextRace.Qualifying.time;
       document.getElementById('R').innerHTML = 'RACE:' + ' '+ nextRace.time;;
-    setInterval(() => {
+    
+      setInterval(() => {
       const nextRace = races.find(race => new Date(race.date) > new Date());
       const startTime = new Date(`${nextRace.date} ${nextRace.time}`).getTime();
       updateCountdown(nextRace, startTime);
@@ -55,7 +71,6 @@ async function getRaces() {
     console.log(qualifying);
   })
 }
-
 
 async function getCards(param) {
 
@@ -180,7 +195,7 @@ async function getStandings() {
     .catch(error => console.log('error', error))
     
 
-  }
+}
   
   getStandings()
   getCards('/2023/drivers.json')
