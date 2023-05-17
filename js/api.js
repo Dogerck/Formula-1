@@ -22,7 +22,7 @@ async function getRaces() {
     const cirBg = document.querySelector(".circuitBg");
     const imgCircuit = document.createElement("img");
     imgCircuit.setAttribute("src", `./assets/circuits/${nextRace.Circuit.circuitId}.png`);
-    cirBg.appendChild(imgCircuit)
+    cirBg.appendChild(imgCircuit);
 
 
     const updateCountdown = (nextRace, startTime) => {
