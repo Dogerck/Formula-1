@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <title>Home</title>
 </head>
+
 <body>
     <header>
         <img class="logo" src="assets/icons/f1_logo.svg" alt="">
@@ -25,27 +27,31 @@
         </nav>
     </header>
     <main>
-        <h1>2023 Driver Standings</h1>
-        <p>Check out this season's official F1 line-up. Full breakdown of drivers, points and current positions. Follow your favourite F1 drivers on and off the track.</p>
-        
+
+
         <div class="mainContent">
-            <table class="bordered striped centered">
-                <thead>
-                    <tr>
-                        <th>Position</th>
-                        <th>Driver</th>
-                        <th>Nationality</th>
-                        <th>Team</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
-                <tbody id="bodyTable">
-                </tbody>
-            </table>
+            <div class="standings">
+                <h1>2023 Driver Standings</h1>
+                <p>Check out this season's official F1 line-up. Full breakdown of drivers, points and current positions.
+                    Follow your favourite F1 drivers on and off the track.</p>
+                <table class="bordered striped centered">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Driver</th>
+                            <th>Nationality</th>
+                            <th>Team</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyTable">
+                    </tbody>
+                </table>
+            </div>
 
             <div class="nextRaceContent">
-                <h2>Next Race:</h2>
-                <h3 id="nR">Imola</h3>
+                <h1>Next Race:</h1>
+                <h2 id="nR"></h2>
                 <div class="circuitBg">
                     <!-- <img src="./assets/circuits/{{raceId}}.png" alt="imola"> -->
                 </div>
@@ -54,13 +60,16 @@
                 <p id="fp3">practice 3:</p>
                 <p id="Q">Qualifying:</p>
                 <p id="R">Race:</p>
-                <p id="countdown"></p> 
+                <p id="countdown"></p>
             </div>
         </div>
 
-        
+
     </main>
-    <footer> <p>This project consumes the service of <a href="https://ergast.com/mrd/" target="_blank">Ergast API</a></p></footer>
+    <footer>
+        <p>This project consumes the service of <a href="https://ergast.com/mrd/" target="_blank">Ergast API</a></p>
+    </footer>
     <script src="js/api.js"></script>
 </body>
+
 </html>

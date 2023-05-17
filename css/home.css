@@ -8,9 +8,12 @@ main {
 .mainContent {
   display: flex;
 }
+.standings {
+  display: flex;
+  flex-direction: column;
+}
 .nextRaceContent {
   width: 700px;
-  border: 1px dashed blue;
   margin: 0 auto;
   height: auto;
 }
