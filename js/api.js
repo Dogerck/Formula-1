@@ -1,80 +1,69 @@
-
 let baseURL = "http://ergast.com/api/f1";
 
-const drivers2023 = baseURL + '/2023/drivers.json';
 const standings = baseURL + '/current/driverStandings.json';
 const allRaces = baseURL + '/current.json';
+
+const url = window.location.href;
+const nomeURL = url.substring(url.lastIndexOf('/') + 1);
+
+const anoAtual = new Date().getFullYear()
 
 let requestOptions = {
   method: 'GET',
   redirect: 'follow'
-};
+}
 
-async function getRaces() {
+async function getNextRace() {
   await fetch(allRaces, requestOptions)
-  .then(response => response.json())
-  .then(data => {
-    
-    const races = data.MRData.RaceTable.Races;
-    console.log(races);
-    const circ = document.querySelector(".container-circuits");
-    
-    // races.map((circuits) => {
-      
-    //   const cardI = document.createElement("div");
-    //   cardI.classList.add("card");
+    .then(response => response.json())
+    .then(data => {
 
-    //   circ.appendChild(cardI);
-    //   cardI.innerText = circuits.raceName;
-    // })
+      const races = data.MRData.RaceTable.Races;
+      const nextRace = races.find(race => new Date(race.date) > new Date());
+      new Date(nextRace.time)
+      console.log(nextRace.time);
+      const cirBg = document.querySelector(".circuitBg");
+      const imgCircuit = document.createElement("img");
+      imgCircuit.setAttribute("src", `./assets/circuits/${nextRace.Circuit.circuitId}.png`);
+      cirBg.appendChild(imgCircuit);
 
 
+      const updateCountdown = (nextRace, startTime) => {
 
-    const nextRace = races.find(race => new Date(race.date) > new Date());
-    new Date(nextRace.time)
-    console.log(nextRace.time);
-    const cirBg = document.querySelector(".circuitBg");
-    const imgCircuit = document.createElement("img");
-    imgCircuit.setAttribute("src", `./assets/circuits/${nextRace.Circuit.circuitId}.png`);
-    cirBg.appendChild(imgCircuit);
+        const now = new Date().getTime();
+        const timeRemaining = startTime - now;
+        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+        const countdown = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-
-    const updateCountdown = (nextRace, startTime) => {
-      
-      const now = new Date().getTime();
-      const timeRemaining = startTime - now;
-      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-      const countdown = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-      // atualiza o elemento da página que exibe o tempo restante
-      document.getElementById('countdown').innerHTML = 'Countdown:'+ ' ' + countdown;
-    }
+        // atualiza o elemento da página que exibe o tempo restante
+        document.getElementById('countdown').innerHTML = 'Countdown:' + ' ' + countdown;
+      }
 
       document.getElementById('nR').innerHTML = nextRace.raceName;
-      document.getElementById('fp1').innerHTML = 'PRACTICE 1:' + ' '+ nextRace.FirstPractice.time;
-      document.getElementById('fp2').innerHTML = 'PACTICE 2:' + ' '+ nextRace.SecondPractice.time;
-      document.getElementById('fp3').innerHTML = 'PRACTICE 3:' + ' '+ nextRace.ThirdPractice.time;
-      document.getElementById('Q').innerHTML = 'QUALIFYING:' + ' '+ nextRace.Qualifying.time;
-      document.getElementById('R').innerHTML = 'RACE:' + ' '+ nextRace.time;;
-    
-      setInterval(() => {
-      const nextRace = races.find(race => new Date(race.date) > new Date());
-      const startTime = new Date(`${nextRace.date} ${nextRace.time}`).getTime();
-      updateCountdown(nextRace, startTime);
-    }, 1000);
+      document.getElementById('fp1').innerHTML = 'PRACTICE 1:' + ' ' + nextRace.FirstPractice.time;
+      document.getElementById('fp2').innerHTML = 'PACTICE 2:' + ' ' + nextRace.SecondPractice.time;
+      document.getElementById('fp3').innerHTML = 'PRACTICE 3:' + ' ' + nextRace.ThirdPractice.time;
+      document.getElementById('Q').innerHTML = 'QUALIFYING:' + ' ' + nextRace.Qualifying.time;
+      document.getElementById('R').innerHTML = 'RACE:' + ' ' + nextRace.time;;
 
-    const race = new Date(`${nextRace.date} ${nextRace.time}`);
-    const qualifying = new Date(` ${nextRace.date} ${nextRace.Qualifying.time}`);
-    console.log(qualifying);
-  })
+      setInterval(() => {
+        const nextRace = races.find(race => new Date(race.date) > new Date());
+        const startTime = new Date(`${nextRace.date} ${nextRace.time}`).getTime();
+        updateCountdown(nextRace, startTime);
+      }, 1000);
+
+      const race = new Date(`${nextRace.date} ${nextRace.time}`);
+      const qualifying = new Date(` ${nextRace.date} ${nextRace.Qualifying.time}`);
+      console.log(qualifying);
+    })
 }
 
 async function getCards(param) {
 
-  await fetch(baseURL+param, requestOptions)
+  await fetch(baseURL + param, requestOptions)
     .then(response => response.json())
     .then(data => {
 
@@ -82,8 +71,6 @@ async function getCards(param) {
       data = data.MRData.DriverTable.Drivers;
 
       data.map((drivers) => {
-
-        // let birthDate = drivers.dateOfBirth.split('-').reverse().join('/')
 
         let birthDate = new Date(drivers.dateOfBirth).toLocaleDateString('pt-BR');
 
@@ -134,7 +121,6 @@ async function getCards(param) {
         birth.innerHTML = "<b>Birthday:</b> " + birthDate;
         nac.innerHTML = "<b>Nationality:</b> " + drivers.nationality;
       })
-
     })
     .catch(error => console.log('error', error))
 }
@@ -144,11 +130,11 @@ async function getStandings() {
     .then(response => response.json())
     .then(data => {
 
-      const table =  document.getElementById("bodyTable");
+      const table = document.getElementById("bodyTable");
       data = data.MRData.StandingsTable.StandingsLists[0].DriverStandings
-      
+
       data.map((standings) => {
-      
+
         const tr = document.createElement('tr');
 
         const pos = document.createElement('td');
@@ -184,19 +170,61 @@ async function getStandings() {
 
         pos.innerText = standings.position
         dr.innerText = standings.Driver.familyName;
-      
+
         car.innerText = standings.Constructors[0].name;
         pts.innerText = standings.points;
-
         // t = document.querySelector(".skeleton");
-        
       })
     })
     .catch(error => console.log('error', error))
-    
+
 
 }
-  
-  getStandings()
-  getCards('/2023/drivers.json')
-  getRaces()
+
+async function getSchedule() {
+  await fetch(allRaces, requestOptions)
+    .then(response => response.json())
+    .then(data => {
+      const races = data.MRData.RaceTable.Races;
+      const circ = document.querySelector(".container-circuits");
+
+      races.map((circuits) => {
+
+        const cardI = document.createElement("div");
+        cardI.classList.add("card");
+
+        circ.appendChild(cardI);
+        cardI.innerText = circuits.raceName;
+      })
+
+    })
+}
+
+switch (nomeURL) {
+
+  case "drivers.html":
+
+    getCards(`/${anoAtual}/drivers.json`);
+
+    break;
+
+  case "index.html":
+
+    getStandings()
+
+    getNextRace()
+
+    break;
+
+  case "schedule.html":
+
+    getSchedule()
+
+    break;
+
+  default:
+    break;
+
+}
+
+
