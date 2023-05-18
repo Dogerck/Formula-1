@@ -44,7 +44,7 @@ async function getNextRace() {
 
       document.getElementById('nR').innerHTML = nextRace.raceName;
       document.getElementById('fp1').innerHTML = 'PRACTICE 1:' + ' ' + nextRace.FirstPractice.time;
-      document.getElementById('fp2').innerHTML = 'PACTICE 2:' + ' ' + nextRace.SecondPractice.time;
+      document.getElementById('fp2').innerHTML = 'PRACTICE 2:' + ' ' + nextRace.SecondPractice.time;
       document.getElementById('fp3').innerHTML = 'PRACTICE 3:' + ' ' + nextRace.ThirdPractice.time;
       document.getElementById('Q').innerHTML = 'QUALIFYING:' + ' ' + nextRace.Qualifying.time;
       document.getElementById('R').innerHTML = 'RACE:' + ' ' + nextRace.time;;
