@@ -61,7 +61,7 @@ async function getNextRace() {
     })
 }
 
-async function getCards(param) {
+async function getCurrentDrivers(param) {
 
   await fetch(baseURL + param, requestOptions)
     .then(response => response.json())
@@ -204,7 +204,7 @@ switch (nomeURL) {
 
   case "drivers.html":
 
-    getCards(`/${anoAtual}/drivers.json`);
+    getCurrentDrivers(`/${anoAtual}/drivers.json`);
 
     break;
 
