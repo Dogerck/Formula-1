@@ -1,75 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="shortcut icon" type="image/x-icon" href="https://media.formula1.com/etc/designs/fom-website/favicon.ico">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-    <title>Home</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/home.css">
+        <link rel="shortcut icon" type="image/x-icon"
+            href="https://media.formula1.com/etc/designs/fom-website/favicon.ico">
+        <meta http-equiv="Content-Security-Policy"
+            content="upgrade-insecure-requests" />
+        <title>Home</title>
+    </head>
 
-<body>
-    <header>
-        <img class="logo" src="assets/icons/f1_logo.svg" alt="">
-        <nav>
-            <div class="botoes-nav">
-                <ul>
-                    <li><a href="index.html">Latest</a></li>
-                    <li><a href="schedule.html">Schedule</a></li>
-                    <li>Results</li>
-                    <li><a href="drivers.html">Drivers</a></li>
-                    <li>Teams</li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <main>
-
-
-        <div class="mainContent">
-            <div class="standings">
-                <h1>2023 Driver Standings</h1>
-                <p>Check out this season's official F1 line-up. Full breakdown of drivers, points and current positions.
-                    Follow your favourite F1 drivers on and off the track.</p>
-                <table class="bordered striped centered">
-                    <thead>
-                        <tr>
-                            <th>Position</th>
-                            <th>Driver</th>
-                            <th>Nationality</th>
-                            <th>Team</th>
-                            <th>Points</th>
-                        </tr>
-                    </thead>
-                    <tbody id="bodyTable">
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="nextRaceContent">
-                <h1>Next Race:</h1>
-                <h2 id="nR"></h2>
-                <div class="circuitBg">
-                    <!-- <img src="./assets/circuits/{{raceId}}.png" alt="imola"> -->
+    <body>
+        <header>
+            <img class="logo" src="assets/icons/f1_logo.svg" alt>
+            <nav>
+                <div class="botoes-nav">
+                    <ul>
+                        <li><a href="index.html">Latest</a></li>
+                        <li><a href="schedule.html">Schedule</a></li>
+                        <li>Results</li>
+                        <li><a href="drivers.html">Drivers</a></li>
+                        <li>Teams</li>
+                    </ul>
                 </div>
-                <p id="fp1"></p>
-                <p id="fp2"></p>
-                <p id="fp3"></p>
-                <p id="Q"></p>
-                <p id="R"></p>
-                <p id="countdown"></p>
+            </nav>
+        </header>
+        <main>
+
+            <div class="mainContent">
+                <div class="standings">
+                    <h2>2023 Driver Standings</h2>
+                    <p>Check out this season's official F1 line-up. Full
+                        breakdown of drivers, points and current positions.
+                        Follow your favourite F1 drivers on and off the track.</p>
+                    <table class="bordered striped centered">
+                        <thead>
+                            <tr>
+                                <th>Position</th>
+                                <th>Driver</th>
+                                <th>Nationality</th>
+                                <th>Team</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyTable">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="nextRaceContent">
+                    <div class="title">
+                        <h3>Next Race:</h3>
+                        <h2 id="nR"></h2>
+                    </div>
+                    <div class="next-race-info">
+                        <div class="circuitBg">
+                            <div class="timeContent">
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
             </div>
-        </div>
 
-
-    </main>
-    <footer>
-        <p>This project consumes the service of <a href="https://ergast.com/mrd/" target="_blank">Ergast API</a></p>
-    </footer>
-    <script src="js/api.js"></script>
-</body>
+        </main>
+        <footer>
+            <p>This project consumes the service of <a
+                    href="https://ergast.com/mrd/" target="_blank">Ergast API</a></p>
+        </footer>
+        <script src="js/api.js"></script>
+    </body>
 
 </html>

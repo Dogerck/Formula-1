@@ -19,17 +19,133 @@ async function getNextRace() {
     .then(data => {
 
       const races = data.MRData.RaceTable.Races;
+      console.log(races);
       const nextRace = races.find(race => new Date(race.date) > new Date());
-      new Date(nextRace.time)
-      console.log(nextRace.time);
+      console.log(nextRace);
+      const weekdays = ['NULL', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT','SUN'];
+
+      const nR = document.getElementById("nR");
+      nR.innerText = nextRace.raceName;
       const cirBg = document.querySelector(".circuitBg");
+      const timeCt = document.querySelector(".timeContent");
       const imgCircuit = document.createElement("img");
       imgCircuit.setAttribute("src", `./assets/circuits/${nextRace.Circuit.circuitId}.png`);
       cirBg.appendChild(imgCircuit);
 
+      const p1 = document.createElement("div");
+      p1.classList.add("session-item");
+      timeCt.appendChild(p1)
+      const p2 = document.createElement("div");
+      p2.classList.add("session-item");
+      timeCt.appendChild(p2)
+      const p3 = document.createElement("div");
+      p3.classList.add("session-item");
+      timeCt.appendChild(p3)
+      const hr = document.createElement("hr");
+      timeCt.appendChild(hr)
+      const Qua = document.createElement("div");
+      Qua.classList.add("session-item");
+      timeCt.appendChild(Qua)
+      const Ra = document.createElement("div");
+      Ra.classList.add("session-item");
+      timeCt.appendChild(Ra)
+      const ctdn = document.createElement("div");
+      ctdn.classList.add("session-item");
+      timeCt.appendChild(ctdn)
+
+      const pr1 = document.createElement("p");
+      pr1.textContent = "PRACTICE 1";
+      p1.appendChild(pr1);
+
+      const pr1Day = document.createElement("p");
+      const wkday1 = new Date(nextRace.FirstPractice.date).getDay()+1
+      const weekdayName1 = weekdays[wkday1];
+      pr1Day.textContent = weekdayName1
+      p1.appendChild(pr1Day);
+      
+      const pr1Time = document.createElement("div");
+      pr1Time.textContent = nextRace.FirstPractice.time;
+      p1.appendChild(pr1Time)
+
+
+      const pr2 = document.createElement("p");
+      pr2.textContent = "PRACTICE 2";
+      p2.appendChild(pr2);
+
+      const pr2Day = document.createElement("p");
+      const wkday2 = new Date(nextRace.SecondPractice.date).getDay()+1
+      const weekdayName2 = weekdays[wkday2];
+      pr2Day.textContent = weekdayName2
+      p2.appendChild(pr2Day);
+
+      const pr2Time = document.createElement("div");
+      pr2Time.textContent = nextRace.SecondPractice.time;
+      p2.appendChild(pr2Time);
+
+      if (nextRace.ThirdPractice) {
+        const pr3 = document.createElement("p");
+        pr3.textContent = "PRACTICE 3";
+        p3.appendChild(pr3);
+
+        const pr3Day = document.createElement("p");
+        const wkday3 = new Date(nextRace.ThirdPractice.date).getDay()+1
+        const weekdayName3 = weekdays[wkday3];
+        pr3Day.textContent = weekdayName3
+        p3.appendChild(pr3Day);
+
+        const pr3Time = document.createElement("div");
+        pr3Time.textContent = nextRace.ThirdPractice.time;
+        p3.appendChild(pr3Time);
+
+      } else if (nextRace.Sprint) {
+
+          const pr4 = document.createElement("p");
+          pr4.textContent = "SPRINT";
+          p3.appendChild(pr4);
+
+          const pr4Day = document.createElement("p");
+          const wkday4 = new Date(nextRace.Sprint.date).getDay()+1
+          const weekdayName4 = weekdays[wkday4];
+          pr4Day.textContent = weekdayName4
+          p3.appendChild(pr4Day);
+
+          const pr4Time = document.createElement("div");
+          pr4Time.textContent = nextRace.Sprint.time;
+          p3.appendChild(pr4Time);
+      }
+
+      const quali = document.createElement("p");
+      quali.textContent = "QUALIFYING";
+      Qua.appendChild(quali);
+
+      const quaDay = document.createElement("p");
+      const wkday5 = new Date(nextRace.Qualifying.date).getDay()+1
+      const weekdayName5 = weekdays[wkday5];
+      quaDay.textContent = weekdayName5
+      Qua.appendChild(quaDay);
+
+      const quaTime = document.createElement("div");
+      quaTime.textContent = nextRace.Qualifying.time;
+      Qua.appendChild(quaTime);
+
+
+      const rce = document.createElement("p");
+      rce.textContent = "RACE";
+      Ra.appendChild(rce);
+
+      const raDay = document.createElement("p");
+      const wkday6 = new Date(nextRace.date).getDay()+1
+      const weekdayName6 = weekdays[wkday6];
+      console.log(weekdayName6);
+      raDay.textContent = weekdayName6
+      Ra.appendChild(raDay);
+
+      const raTime = document.createElement("div");
+      raTime.textContent = nextRace.time;
+      Ra.appendChild(raTime);
 
       const updateCountdown = (nextRace, startTime) => {
-
+        
         const now = new Date().getTime();
         const timeRemaining = startTime - now;
         const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
@@ -37,17 +153,11 @@ async function getNextRace() {
         const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
         const countdown = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
+        
         // atualiza o elemento da página que exibe o tempo restante
-        document.getElementById('countdown').innerHTML = 'Countdown:' + ' ' + countdown;
+        ctdn.innerText = countdown
       }
 
-      document.getElementById('nR').innerHTML = nextRace.raceName;
-      document.getElementById('fp1').innerHTML = 'PRACTICE 1:' + ' ' + nextRace.FirstPractice.time;
-      document.getElementById('fp2').innerHTML = 'PRACTICE 2:' + ' ' + nextRace.SecondPractice.time;
-      document.getElementById('fp3').innerHTML = 'PRACTICE 3:' + ' ' + nextRace.ThirdPractice.time;
-      document.getElementById('Q').innerHTML = 'QUALIFYING:' + ' ' + nextRace.Qualifying.time;
-      document.getElementById('R').innerHTML = 'RACE:' + ' ' + nextRace.time;;
 
       setInterval(() => {
         const nextRace = races.find(race => new Date(race.date) > new Date());
@@ -55,9 +165,7 @@ async function getNextRace() {
         updateCountdown(nextRace, startTime);
       }, 1000);
 
-      const race = new Date(`${nextRace.date} ${nextRace.time}`);
       const qualifying = new Date(` ${nextRace.date} ${nextRace.Qualifying.time}`);
-      console.log(qualifying);
     })
 }
 
