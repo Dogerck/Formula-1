@@ -5,6 +5,7 @@ const allRaces = baseURL + '/current.json';
 
 const url = window.location.href;
 const nomeURL = url.substring(url.lastIndexOf('/') + 1);
+console.log(nomeURL);
 
 const anoAtual = new Date().getFullYear()
 const timezone = new Date().getTimezoneOffset() / -60;
@@ -13,7 +14,6 @@ let requestOptions = {
   method: 'GET',
   redirect: 'follow'
 }
-
 function convertToBrazilianTime(date, time, timezone) {
   const [yr, mon, day] = date.split('-');
   const [hrs, min] = time.split(':');
@@ -24,6 +24,7 @@ function convertToBrazilianTime(date, time, timezone) {
 
   return `${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
 }
+
 
 async function getNextRace() {
   await fetch(allRaces, requestOptions)
@@ -324,6 +325,8 @@ async function getSchedule() {
     })
 }
 
+
+
 switch (nomeURL) {
 
   case "drivers.html":
@@ -350,5 +353,3 @@ switch (nomeURL) {
     break;
 
 }
-
-
