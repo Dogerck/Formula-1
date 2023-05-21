@@ -27,8 +27,8 @@ main {
 }
 .circuitBg {
   border-radius: 5px;
-    width: 80%;
-    height: 354px;
+  width: 240px;
+  height: 272px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,11 +37,10 @@ main {
     background-image: repeating-linear-gradient( 45deg, #414141 25%, transparent 25%, transparent 75%, #414141 75%, #414141 ), repeating-linear-gradient(45deg, #414141 25%, #15151e 25%, #15151e 75%, #414141 75%, #414141);
     background-position: 0 0, 10px 10px;
     background-size: 20px 20px;
-    position: relative;
+    /* position: relative; */
 }
 .circuitBg img {
-  position: absolute;
-  left: 50px;
+  width: 50%;
 }
 .timeContent {
   display: flex;
@@ -52,8 +51,9 @@ main {
   border-radius: 5px;
   margin-top: 5px;
   padding: 8px;
-  position: absolute;
-  right: 52px;
+  height: fit-content;
+  /* position: absolute; */
+  /* right: 52px; */
 }
 .timeContent hr {
   width: 85%;
@@ -76,8 +76,8 @@ main {
 }
 
 .session-item div:last-child {
-  width: 107px;
-  height: 28px;
+  width: 80px;
+  height: 25px;
   border-radius: 9px;
   background-color: #38383f;
   display: flex;

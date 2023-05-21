@@ -153,7 +153,6 @@ async function getNextRace() {
       const raDay = document.createElement("p");
       const wkday6 = new Date(nextRace.date).getDay()+1
       const weekdayName6 = weekdays[wkday6];
-      console.log(weekdayName6);
       raDay.textContent = weekdayName6
       Ra.appendChild(raDay);
 
