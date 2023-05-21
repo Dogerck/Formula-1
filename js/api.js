@@ -7,10 +7,22 @@ const url = window.location.href;
 const nomeURL = url.substring(url.lastIndexOf('/') + 1);
 
 const anoAtual = new Date().getFullYear()
+const timezone = new Date().getTimezoneOffset() / -60;
 
 let requestOptions = {
   method: 'GET',
   redirect: 'follow'
+}
+
+function convertToBrazilianTime(date, time, timezone) {
+  const [yr, mon, day] = date.split('-');
+  const [hrs, min] = time.split(':');
+
+  const newTime = new Date(+yr, +mon - 1, +day, +hrs + timezone, +min);
+  const hours = newTime.getHours();
+  const minutes = newTime.getMinutes();
+
+  return `${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
 }
 
 async function getNextRace() {
@@ -64,7 +76,8 @@ async function getNextRace() {
       p1.appendChild(pr1Day);
       
       const pr1Time = document.createElement("div");
-      pr1Time.textContent = nextRace.FirstPractice.time;
+      const firstPracticeTime = convertToBrazilianTime(nextRace.FirstPractice.date, nextRace.FirstPractice.time, timezone);
+      pr1Time.textContent = firstPracticeTime
       p1.appendChild(pr1Time)
 
 
@@ -79,7 +92,8 @@ async function getNextRace() {
       p2.appendChild(pr2Day);
 
       const pr2Time = document.createElement("div");
-      pr2Time.textContent = nextRace.SecondPractice.time;
+      const secondPracticeTime = convertToBrazilianTime(nextRace.SecondPractice.date, nextRace.SecondPractice.time, timezone);
+      pr2Time.textContent = secondPracticeTime;
       p2.appendChild(pr2Time);
 
       if (nextRace.ThirdPractice) {
@@ -94,7 +108,8 @@ async function getNextRace() {
         p3.appendChild(pr3Day);
 
         const pr3Time = document.createElement("div");
-        pr3Time.textContent = nextRace.ThirdPractice.time;
+        const thirdPracticeTime = convertToBrazilianTime(nextRace.ThirdPractice.date, nextRace.ThirdPractice.time, timezone);
+        pr3Time.textContent = thirdPracticeTime;
         p3.appendChild(pr3Time);
 
       } else if (nextRace.Sprint) {
@@ -110,7 +125,8 @@ async function getNextRace() {
           p3.appendChild(pr4Day);
 
           const pr4Time = document.createElement("div");
-          pr4Time.textContent = nextRace.Sprint.time;
+          const sprintTime = convertToBrazilianTime(nextRace.Sprint.date, nextRace.Sprint.time, timezone);
+          pr4Time.textContent = sprintTime;
           p3.appendChild(pr4Time);
       }
 
@@ -125,7 +141,8 @@ async function getNextRace() {
       Qua.appendChild(quaDay);
 
       const quaTime = document.createElement("div");
-      quaTime.textContent = nextRace.Qualifying.time;
+      const qualifyingTime = convertToBrazilianTime(nextRace.Qualifying.date, nextRace.Qualifying.time, timezone);
+      quaTime.textContent = qualifyingTime;
       Qua.appendChild(quaTime);
 
 
@@ -141,7 +158,8 @@ async function getNextRace() {
       Ra.appendChild(raDay);
 
       const raTime = document.createElement("div");
-      raTime.textContent = nextRace.time;
+      const raceTime = convertToBrazilianTime(nextRace.date, nextRace.time, timezone);
+      raTime.textContent = raceTime;
       Ra.appendChild(raTime);
 
       const updateCountdown = (nextRace, startTime) => {
@@ -164,8 +182,6 @@ async function getNextRace() {
         const startTime = new Date(`${nextRace.date} ${nextRace.time}`).getTime();
         updateCountdown(nextRace, startTime);
       }, 1000);
-
-      const qualifying = new Date(` ${nextRace.date} ${nextRace.Qualifying.time}`);
     })
 }
 
