@@ -7,7 +7,7 @@ const url = window.location.href;
 const urlRota = url.substring(url.lastIndexOf('/') + 1);
 
 const anoAtual = new Date().getFullYear()
-const timezone = new Date().getTimezoneOffset() / -60;
+const timezone = new Date().getTimezoneOffset() / 60;
 
 let requestOptions = {
   method: 'GET',
@@ -17,7 +17,7 @@ function convertToBrazilianTime(date, time, timezone) {
   const [yr, mon, day] = date.split('-');
   const [hrs, min] = time.split(':');
 
-  const newTime = new Date(+yr, +mon - 1, +day, +hrs + timezone, +min);
+  const newTime = new Date(+yr, +mon - 1, +day, +hrs - timezone, +min);
   const hours = newTime.getHours();
   const minutes = newTime.getMinutes();
 
