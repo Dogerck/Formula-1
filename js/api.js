@@ -4,8 +4,7 @@ const standings = baseURL + '/current/driverStandings.json';
 const allRaces = baseURL + '/current.json';
 
 const url = window.location.href;
-const nomeURL = url.substring(url.lastIndexOf('/') + 1);
-console.log(nomeURL);
+const urlRota = url.substring(url.lastIndexOf('/') + 1);
 
 const anoAtual = new Date().getFullYear()
 const timezone = new Date().getTimezoneOffset() / -60;
@@ -324,32 +323,30 @@ async function getSchedule() {
 
     })
 }
+  switch (urlRota) {
 
-
-
-switch (nomeURL) {
-
-  case "drivers.html":
-
-    getCurrentDrivers(`/${anoAtual}/drivers.json`);
-
-    break;
-
-  case "index.html":
-
-    getStandings()
-
-    getNextRace()
-
-    break;
-
-  case "schedule.html":
-
-    getSchedule()
-
-    break;
-
-  default:
-    break;
-
-}
+    case "drivers.html":
+  
+      getCurrentDrivers(`/${anoAtual}/drivers.json`);
+  
+      break;
+  
+    case "index.html":
+  
+      getStandings()
+  
+      getNextRace()
+  
+      break;
+  
+    case "schedule.html":
+  
+      getSchedule()
+  
+      break;
+  
+    default:
+      getStandings()
+      getNextRace()
+      break;
+  } 
