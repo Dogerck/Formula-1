@@ -39,11 +39,13 @@ async function getNextRace() {
       const nR = document.getElementById("nR");
       nR.innerText = nextRace.raceName;
       const cirBg = document.querySelector(".circuitBg");
-      const timeCt = document.querySelector(".timeContent");
       const imgCircuit = document.createElement("img");
       imgCircuit.setAttribute("src", `./assets/circuits/${nextRace.Circuit.circuitId}.png`);
       cirBg.appendChild(imgCircuit);
-
+      
+      const timeCt = document.createElement("div");
+      timeCt. classList.add("timeContent");
+      cirBg.appendChild(timeCt)
       const p1 = document.createElement("div");
       p1.classList.add("session-item");
       timeCt.appendChild(p1)
