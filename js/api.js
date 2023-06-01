@@ -41,6 +41,7 @@ async function getNextRace() {
       const cirBg = document.querySelector(".circuitBg");
       const imgCircuit = document.createElement("img");
       imgCircuit.setAttribute("src", `./assets/circuits/${nextRace.Circuit.circuitId}.png`);
+      imgCircuit.setAttribute("alt", nextRace.Circuit.circuitId);
       cirBg.appendChild(imgCircuit);
       
       const timeCt = document.createElement("div");
