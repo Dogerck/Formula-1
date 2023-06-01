@@ -1,3 +1,15 @@
+@font-face {
+    font-family: F1Regular;
+    src: url(./fonts/Formula1-Regular_web_0.ttf);
+}
+@font-face {
+    font-family: F1Wide;
+    src: url(./fonts/Formula1-Wide_web_0.ttf);
+}
+@font-face {
+    font-family: F1Bold;
+    src: url(./fonts/Formula1-Bold_web_0.ttf);
+}
 html {
     height: 100%;
     min-width: 100%;
@@ -10,7 +22,7 @@ body {
     display: flex;
     flex-direction: column;
     font-weight: 500;
-    font-family: 'Formula1 Display Regular', sans-serif;
+    font-family: F1Regular, sans-serif;
 }
 
 header {
