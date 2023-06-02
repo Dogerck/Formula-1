@@ -121,6 +121,7 @@ tr:hover:nth-child(1n + 1) {
 }
 .country-flag img {
   width: 100%;
+  height: auto;
 }
 
 .skeleton {
