@@ -32,10 +32,13 @@ header {
     background-color: #e10600 ;
     color: #fff;
     height: 60px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 5px;
+    position: fixed;
+    z-index: 999;
 }
 
 .logo{
